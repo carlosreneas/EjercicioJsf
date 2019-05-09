@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+	<h:outputLabel rendered="true" value="#{controlBean.usuarioBean.usuario.usuario}">
+	</h:outputLabel>
+<h:form>
+<b:selectOneMenu update="tabla"
+                 onchange="ajax:usuarioBean.listar2()"
+                 value="#{usuarioBean.combo}">
+                 <f:selectItem itemLabel="(Please select)" itemValue="" />
+      <f:selectItem itemLabel="Cinquecento" itemValue="1" />
+      <f:selectItem itemLabel="Civic" itemValue="2" />
+      <f:selectItem itemLabel="Astra" itemValue="3" />
+      <f:selectItem itemLabel="Megane" itemValue="4" />
+      </b:selectOneMenu>
+      
+  <b:dataTable id="tablaPub" value="#{controlBean.usuarioBean.usuarioAutenticado.publicacions}"
+               var="publicacion">
+    <b:dataTableColumn value="#{publicacion.descripcion}" />
+  </b:dataTable>
+      
+      
+  <b:dataTable id="tabla" value="#{usuarioBean.listar()}"
+               var="usuario">
+    <b:dataTableColumn value="#{usuario.nombre}" />
+    <b:dataTableColumn value="#{usuario.email}" />
+    <b:dataTableColumn value="#{usuario.usuario}" />
+    <b:dataTableColumn value="#{usuario.apellido}"  order="asc"/>
+  </b:dataTable>
+  
+</h:form>
+</body> 
+</html>
